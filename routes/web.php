@@ -11,10 +11,6 @@ Route::get('/home', function () {
     return "Hello";
 });
 Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('/test',[HomeController::class,'test'])->name('test');
-Route::get('/param/{id}/{number}',[HomeController::class,'param'])->name('param');
-Route::get('/user',[HomeController::class,'user'])->name('user');
-Route::post('/save',[HomeController::class,'save'])->name('save');
 // ADMIN PANEL //
 Route::get('/admin',[AdminPanelHomeController::class,'index'])->name('admin');
 

@@ -1,34 +1,33 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+    <title>E Store - eCommerce HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="eCommerce HTML Template Free Download" name="keywords">
+    <meta content="eCommerce HTML Template Free Download" name="description">
 
-    <title>@yield('title')</title>
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{{asset('assets')}}/lib/slick/slick.css" rel="stylesheet">
+    <link href="{{asset('assets')}}/lib/slick/slick-theme.css" rel="stylesheet">
 
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/bootstrap.min.css">
-
-    <link rel="stylesheet" type="text/css" href="{{asset('assets')}}/css/font-awesome.css">
-
-    <link rel="stylesheet" href="{{asset('assets')}}/css/templatemo-hexashop.css">
-
-    <link rel="stylesheet" href="{{asset('assets')}}/css/owl-carousel.css">
-
-    <link rel="stylesheet" href="{{asset('assets')}}/css/lightbox.css">
-  @yield('head')
+    <!-- Template Stylesheet -->
+    <link href="{{asset('assets')}}/css/style.css" rel="stylesheet">
 </head>
 
 <body>
 
 @include('home.header')
+@include('home.slider')
 @section('sidebar')
     @include("home.mainbanner")
 @show

@@ -85,9 +85,9 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{asset('assets')}}/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                    <li><a href="{{asset('assets')}}/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                    <li><a href="{{asset('assets')}}/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                    <li><a href="{{asset('assets')}}/pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
+                    <li><a href="{{asset('assets')}}/pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
+                    <li><a href="{{asset('assets')}}/pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
                 </ul>
             </li>
             <li class="treeview">

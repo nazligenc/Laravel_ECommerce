@@ -47,9 +47,13 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Category $category,$id)
     {
-        echo "Category Show";
+        $data=Category::find($id);
+        return view('admin.category.show',[
+            "data"=>$data
+        ]);
+
     }
 
     /**

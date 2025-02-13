@@ -6,10 +6,8 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <h1>
-                Category List
-
-            </h1>
+            <a href="/admin/category/create" class="btn btn-block btn-primary" style="width: 150px">Add Category</a>
+            <br>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Category List</li>

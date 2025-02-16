@@ -10,8 +10,8 @@
             {{$data->title}}
             </h1>
                 <ol class="breadcrumb">
-                    <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active"><a href="#">Show Category</a></li>
+                    <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Show Category</li>
 
                 </ol>
             </section>
@@ -59,10 +59,10 @@
                 </div><!-- /.box-body -->
             </div>
             <div class="col-sm-2">
-                <td><a href="/admin/category/edit/{{$data->id}}" class="btn btn-block btn-info btn-sm" style="width: 200px">Edit</a></td>
+                <td><a href="{{route('admin.category.edit',['id'=>$data->id])}}" class="btn btn-block btn-info btn-sm" style="width: 200px">Edit</a></td>
             </div>
             <div class="col-sm-2">
-            <td><a href="/admin/category/delete/{{$data->id}}" class="btn btn-block btn-danger btn-sm" style="width: 200px">Delete</a></td>
+            <td><a href="{{route('admin.category.edit',['id'=>$data->id])}}" class="btn btn-block btn-danger btn-sm" style="width: 200px">Delete</a></td>
             </div>
         </section><!-- /.content -->
     </div><!-- /.content-wrapper -->

@@ -11,8 +11,8 @@
 
             </h1>
                 <ol class="breadcrumb">
-                    <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active"><a href="#">Edit Category</a></li>
+                    <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Edit Category</li>
 
                 </ol>
             </section>
@@ -29,7 +29,7 @@
 
                         </div><!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" action="/admin/category/update/{{$data->id}}" method="post">
+                        <form role="form" action="{{route('admin.category.update',[$data->id])}}" method="post">
                             @csrf
                             <div class="box-body">
                                 <div class="form-group">

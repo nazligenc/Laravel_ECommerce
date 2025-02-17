@@ -1,3 +1,4 @@
+@php use App\Http\Controllers\AdminPanel\CategoryController; @endphp
 @extends('layouts.adminbase')
 @section('title','Category List')
 
@@ -6,7 +7,8 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-            <a href="{{route('admin.category.create')}}" class="btn btn-block btn-primary" style="width: 150px">Add Category</a>
+            <a href="{{route('admin.category.create')}}" class="btn btn-block btn-primary" style="width: 150px">Add
+                Category</a>
             <br>
             <ol class="breadcrumb">
                 <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -23,11 +25,11 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table class="table table-bordered">
-                        <tbody><tr>
+                        <tbody>
+                        <tr>
                             <th style="width: 10px">Id</th>
+                            <th>Parent</th>
                             <th>Title</th>
-                            <th>Keywords</th>
-                            <th>Description</th>
                             <th>Image</th>
                             <th>Status</th>
                             <th style="width: 40px">Edit</th>
@@ -36,23 +38,27 @@
                         </tr>
                         <tbody>
                         @foreach($data as $rs)
-                        <tr>
-                            <td>{{$rs->id}}</td>
-                            <td>{{$rs->title}}</td>
-                            <td>{{$rs->keywords}}</td>
-                            <td>{{$rs->description}}</td>
-                            <td>
-                                @if($rs->image)
-                                <img src="{{Storage::url($rs->image)}}" style="height:60px;width:50px">
-                                @endif
+                            <tr>
+                                <td>{{$rs->id}}</td>
+                                <td>{{CategoryController::getParentsTree($rs,$rs->title)}}</td>
+                                <td>{{$rs->title}}</td>
 
-                            </td>
-                            <td>{{$rs->status}}</td>
-                            <td><a href="{{route('admin.category.edit',['id'=>$rs->id])}}" class="btn btn-block btn-info btn-sm">Edit</a></td>
-                            <td><a href="{{route('admin.category.destroy',['id'=>$rs->id])}}" class="btn btn-block btn-danger btn-sm"
-                                   onclick="return confirm('Deleting !! Are you sure ?')">Delete</a>  </td>
-                            <td><a href="{{route('admin.category.show',['id'=>$rs->id])}}" class="btn btn-block btn-success btn-sm">Show</a></td>
-                        </tr>
+
+                                <td>
+                                    @if($rs->image)
+                                        <img src="{{Storage::url($rs->image)}}" style="height:60px;width:50px">
+                                    @endif
+
+                                </td>
+                                <td>{{$rs->status}}</td>
+                                <td><a href="{{route('admin.category.edit',['id'=>$rs->id])}}"
+                                       class="btn btn-block btn-info btn-sm">Edit</a></td>
+                                <td><a href="{{route('admin.category.destroy',['id'=>$rs->id])}}"
+                                       class="btn btn-block btn-danger btn-sm"
+                                       onclick="return confirm('Deleting !! Are you sure ?')">Delete</a></td>
+                                <td><a href="{{route('admin.category.show',['id'=>$rs->id])}}"
+                                       class="btn btn-block btn-success btn-sm">Show</a></td>
+                            </tr>
 
                         @endforeach
                         </tbody>

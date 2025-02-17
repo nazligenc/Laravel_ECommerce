@@ -1,3 +1,4 @@
+@php use App\Http\Controllers\AdminPanel\CategoryController; @endphp
 @extends('layouts.adminbase')
 @section('title','Edit Category : '.$data->title)
 
@@ -10,12 +11,12 @@
                 Edit Category: {{$data->title}}
 
             </h1>
-                <ol class="breadcrumb">
-                    <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Edit Category</li>
+            <ol class="breadcrumb">
+                <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Edit Category</li>
 
-                </ol>
-            </section>
+            </ol>
+        </section>
 
 
         <!-- Main content -->
@@ -29,20 +30,34 @@
 
                         </div><!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" action="{{route('admin.category.update',[$data->id])}}" method="post" enctype="multipart/form-data">
+                        <form role="form" action="{{route('admin.category.update',[$data->id])}}" method="post"
+                              enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
                                 <div class="form-group">
+                                    <label>Parent Category</label>
+                                    <select class="form-control select2" name="parent_id">
+                                        <option value="0" selected="selected">Main Category</option>
+
+                                        <option
+                                            value="{{$data->id}}">{{CategoryController::getParentsTree($data,$data->title)}}</option>
+
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputEmail1">Title</label>
-                                    <input type="text" class="form-control" name="title" value="{{$data->title}}" placeholder="Title">
+                                    <input type="text" class="form-control" name="title" value="{{$data->title}}"
+                                           placeholder="Title">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Keywords</label>
-                                    <input type="text" class="form-control" name="keywords" value="{{$data->keywords}}" placeholder="Keywords">
+                                    <input type="text" class="form-control" name="keywords" value="{{$data->keywords}}"
+                                           placeholder="Keywords">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Description</label>
-                                    <input type="text" class="form-control" name="description" value="{{$data->description}}" placeholder="Description">
+                                    <input type="text" class="form-control" name="description"
+                                           value="{{$data->description}}" placeholder="Description">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile">Image</label>

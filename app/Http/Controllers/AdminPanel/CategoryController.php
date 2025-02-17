@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminPanel;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -38,6 +39,9 @@ class CategoryController extends Controller
         $data->keywords=$request->keywords;
         $data->description=$request->description;
         $data->status=$request->status;
+        if($request->file('image')){
+            $data->image= $request->file('image')->store('images');
+        }
         $data->save();
         return redirect('admin/category');
 
@@ -65,6 +69,7 @@ class CategoryController extends Controller
         return view('admin.category.edit',[
             "data"=> $data
         ]);
+
     }
 
     /**
@@ -78,6 +83,9 @@ class CategoryController extends Controller
         $data->keywords=$request->keywords;
         $data->description=$request->description;
         $data->status=$request->status;
+        if($request->file('image')){
+            $data->image= $request->file('image')->store('images');
+        }
         $data->save();
         return redirect('admin/category');
     }
@@ -85,8 +93,11 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category,$id)
     {
-        echo "Category Destroy";
+       $data=Category::find($id);
+       Storage::delete($data->image);
+       $data->delete();
+       return redirect('admin/category');
     }
 }

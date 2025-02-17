@@ -29,7 +29,7 @@
 
                         </div><!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" action="{{route('admin.category.store')}}" method="post">
+                        <form role="form" action="{{route('admin.category.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
                                 <div class="form-group">
@@ -47,11 +47,6 @@
                                 <div class="form-group">
                                     <label for="exampleInputFile">Image</label>
                                     <input type="file" class="custom-file-input" name="image">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Check me out
-                                    </label>
                                 </div>
                             </div><!-- /.box-body -->
                             <div class="form-group">

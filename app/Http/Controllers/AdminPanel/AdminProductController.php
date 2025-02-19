@@ -4,27 +4,17 @@ namespace App\Http\Controllers\AdminPanel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class CategoryController extends Controller
+class AdminProductController extends Controller
 {
-    protected $appends=[
-        'getParentsTree'
-    ];
-    public static function getParentsTree($category,$title){
-        if($category->parent_id==0){
-            return $title;
-        }
-        $parent=Category::find($category->parent_id);
-        $title= $parent->title.'>'. $title;
-        return CategoryController::getParentsTree($parent,$title);
 
-    }
     public function index()
     {
-        $data=Category::all();
-        return view('admin.category.index',[
+        $data=Product::all();
+        return view('admin.product.index',[
             "data"=> $data
         ]);
     }
@@ -35,7 +25,7 @@ class CategoryController extends Controller
     public function create()
     {
         $data=Category::all();
-        return view('admin.category.create',[
+        return view('admin.product.create',[
             "data"=>$data
         ]);
     }
@@ -45,17 +35,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data=new Category();
-        $data->parent_id=$request->parent_id;
+        $data=new Product();
+        $data->category_id=$request->category_id;
+        $data->user_id=0;
         $data->title=$request->title;
         $data->keywords=$request->keywords;
         $data->description=$request->description;
+        $data->detail=$request->detail;
+        $data->price=$request->price;
+        $data->quantity=$request->quantity;
+        $data->minquantity=$request->minquantity;
+        $data->tax=$request->tax;
         $data->status=$request->status;
         if($request->file('image')){
             $data->image= $request->file('image')->store('images');
         }
         $data->save();
-        return redirect('admin/category');
+        return redirect('admin/product');
 
 
     }
@@ -63,10 +59,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category,$id)
+    public function show(Product $product,$id)
     {
-        $data=Category::find($id);
-        return view('admin.category.show',[
+        $data=Product::find($id);
+        return view('admin.product.show',[
             "data"=>$data
         ]);
 
@@ -75,43 +71,48 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category,$id)
+    public function edit(Product $product,$id)
     {
-        $data=Category::find($id);
+        $data= Product::find($id);
         $datalist= Category::all();
-        return  view('admin.category.edit',[
+        return  view('admin.product.edit',[
             'data' => $data,
             'datalist' => $datalist
         ]);
-
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category,$id)
+    public function update(Request $request, Product $product,$id)
     {
-        $data=Category::find($id);
-        $data->parent_id=$request->parent_id;
+        $data=Product::find($id);
+        $data->category_id=$request->category_id;
+        $data->user_id=0;
         $data->title=$request->title;
         $data->keywords=$request->keywords;
         $data->description=$request->description;
+        $data->detail=$request->detail;
+        $data->price=$request->price;
+        $data->quantity=$request->quantity;
+        $data->minquantity=$request->minquantity;
+        $data->tax=$request->tax;
         $data->status=$request->status;
         if($request->file('image')){
             $data->image= $request->file('image')->store('images');
         }
         $data->save();
-        return redirect('admin/category');
+        return redirect('admin/product');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category,$id)
+    public function destroy(Product $product,$id)
     {
-       $data=Category::find($id);
+       $data=Product::find($id);
        Storage::delete($data->image);
        $data->delete();
-       return redirect('admin/category');
+       return redirect('admin/product');
     }
 }

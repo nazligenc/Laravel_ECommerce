@@ -1,6 +1,6 @@
 @php use App\Http\Controllers\AdminPanel\CategoryController; @endphp
 @extends('layouts.adminbase')
-@section('title','Edit Category : '.$data->title)
+@section('title','Edit Product : '.$data->title)
 
 @section('content')
     <!-- Right side column. Contains the navbar and content of the page -->
@@ -8,12 +8,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Edit Category: {{$data->title}}
+                Edit Product: {{$data->title}}
 
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{route('admin')}}"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li class="active">Edit Category</li>
+                <li class="active">Edit Product</li>
 
             </ol>
         </section>
@@ -30,19 +30,20 @@
 
                         </div><!-- /.box-header -->
                         <!-- form start -->
-                        <form role="form" action="{{route('admin.category.update',[$data->id])}}" method="post"
+                        <form role="form" action="{{route('admin.product.update',[$data->id])}}" method="post"
                               enctype="multipart/form-data">
                             @csrf
                             <div class="box-body">
                                 <div class="form-group">
                                     <label>Parent Category</label>
-                                    <select class="form-control select2" name="parent_id">
-                                        <option value="0" selected="selected">Main Category</option>
+                                    <select class="form-control select2" name="category_id">
                                         @foreach($datalist as $rs)
-                                            <option value="{{$rs->id}}" @if($rs->id==$data->parent_id) selected="selected" @endif>
+                                            <option value="{{$rs->id}}" @if($rs->id==$data->category_id) selected="selected" @endif>
                                                 {{CategoryController::getParentsTree($rs,$rs->title)}}
                                             </option>
                                         @endforeach
+
+
 
                                     </select>
                                 </div>
@@ -61,6 +62,32 @@
                                     <input type="text" class="form-control" name="description"
                                            value="{{$data->description}}" placeholder="Description">
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Price</label>
+                                    <input type="number" class="form-control" name="price" value="{{$data->price}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Quantity</label>
+                                    <input type="number" class="form-control" name="quantity"
+                                           value="{{$data->quantity}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Minimum Quantity</label>
+                                    <input type="number" class="form-control" name="minquantity"
+                                           value="{{$data->minquantity}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tax %</label>
+                                    <input type="number" class="form-control" name="tax"
+                                           value="{{$data->tax}}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Detail</label>
+                                    <textarea class="form-control" name="detail">
+                                     {{$data->detail}}
+                                    </textarea>
+                                </div>
+
                                 <div class="form-group">
                                     <label for="exampleInputFile">Image</label>
                                     <input type="file" class="custom-file-input" value="{{$data->image}}" name="image">

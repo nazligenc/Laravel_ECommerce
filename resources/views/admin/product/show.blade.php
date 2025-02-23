@@ -1,3 +1,4 @@
+@php use App\Http\Controllers\AdminPanel\CategoryController; @endphp
 @extends('layouts.adminbase')
 @section('title','Show Product : '.$data->title)
 
@@ -34,7 +35,7 @@
                         </tr>
                         <tr>
                             <th style="width:10px">Category</th>
-                            <th> {{$data->category_id}}</th>
+                            <td>{{CategoryController::getParentsTree($data->category,$data->category->title)}}</td>
                         </tr>
                         <tr>
                             <th style="width:10px">Title</th>

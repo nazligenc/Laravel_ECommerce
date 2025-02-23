@@ -42,7 +42,7 @@
                         @foreach($data as $rs)
                             <tr>
                                 <td>{{$rs->id}}</td>
-                                <td>{{CategoryController::getParentsTree($rs,$rs->title)}}</td>
+                                <td>{{CategoryController::getParentsTree($rs->category,$rs->category->title)}}</td>
                                 <td>{{$rs->title}}</td>
                                 <td>{{$rs->price}}</td>
                                 <td>{{$rs->quantity}}</td>
